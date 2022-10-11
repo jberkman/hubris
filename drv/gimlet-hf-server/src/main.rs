@@ -20,6 +20,7 @@
 )]
 mod bsp;
 
+use ringbuf::*;
 use userlib::*;
 
 use drv_stm32h7_qspi::Qspi;
@@ -31,6 +32,13 @@ use stm32h7::stm32h743 as device;
 
 #[cfg(feature = "h753")]
 use stm32h7::stm32h753 as device;
+
+#[derive(Copy, Clone, PartialEq)]
+enum Trace {
+    None,
+    GotThing([u8; 20]),
+}
+ringbuf!(Trace, 2, Trace::None);
 
 // hash_api is optional, but idl files don't have support for optional APIs.
 // So, always include and return a "not implemented" error if the
@@ -106,6 +114,7 @@ fn main() -> ! {
     let log2_capacity = {
         let mut idbuf = [0; 20];
         qspi.read_id(&mut idbuf);
+        ringbuf_entry!(Trace::GotThing(idbuf));
 
         match idbuf[0] {
             0x00 => None, // Invalid
