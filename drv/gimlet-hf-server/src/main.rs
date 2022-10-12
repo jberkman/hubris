@@ -107,9 +107,6 @@ fn main() -> ! {
     sys.gpio_set(cfg.reset).unwrap();
     hl::sleep_for(10);
 
-    // Select FLASH1
-    sys.gpio_set(sys_api::Port::G.pin(5)).unwrap();
-
     // Check the ID.
     // TODO: If different flash parts are used on the same board name,
     // then hard-coding commands, capacity, and clocks will get us into
