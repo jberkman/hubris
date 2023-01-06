@@ -75,6 +75,8 @@ pub enum UpdateError {
     FlashError = 18,
     // Specific to RoT (LPC55)
     SpRotError = 19,
+    #[idol(server_death)]
+    ServerRestarted,
     Unknown = 0xff,
 }
 
