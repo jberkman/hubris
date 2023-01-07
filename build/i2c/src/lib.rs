@@ -630,6 +630,9 @@ impl ConfigGenerator {
             if build_util::has_feature("h743") {
                 writeln!(&mut s, "use stm32h7::stm32h743 as device;")?;
             }
+            if build_util::has_feature("h747cm7") {
+                writeln!(&mut s, "use stm32h7::stm32h747cm7 as device;")?;
+            }
             if build_util::has_feature("h753") {
                 writeln!(&mut s, "use stm32h7::stm32h753 as device;")?;
             }

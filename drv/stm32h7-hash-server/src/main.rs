@@ -19,6 +19,9 @@ use idol_runtime::{
     ClientError, Leased, LenLimit, NotificationHandler, RequestError, R,
 };
 
+#[cfg(feature = "h747cm7")]
+use stm32h7::stm32h747cm7 as device;
+
 #[cfg(feature = "h753")]
 use stm32h7::stm32h753 as device;
 

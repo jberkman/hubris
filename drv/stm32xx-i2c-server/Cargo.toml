@@ -33,6 +33,13 @@ h743 = [
     "build-i2c/h743",
     "panic-messages",
 ]
+h747cm7 = [
+    "stm32h7/stm32h747cm7",
+    "drv-stm32xx-i2c/h747cm7",
+    "drv-stm32xx-sys-api/h747cm7",
+    "build-i2c/h747cm7",
+    "panic-messages",
+]
 h753 = [
     "stm32h7/stm32h753",
     "drv-stm32xx-i2c/h753",

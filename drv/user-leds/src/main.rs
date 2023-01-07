@@ -63,7 +63,7 @@ cfg_if::cfg_if! {
         }
     }
     // Target boards with 3 leds
-    else if #[cfg(any(target_board = "nucleo-h753zi", target_board = "nucleo-h743zi2"))] {
+    else if #[cfg(any(target_board = "nucleo-h753zi", target_board = "nucleo-h743zi2", target_board = "nucleo-h755ziq"))] {
         #[derive(enum_map::Enum, Copy, Clone, FromPrimitive)]
         enum Led {
             Zero = 0,
@@ -435,7 +435,7 @@ cfg_if::cfg_if! {
         task_slot!(SYS, sys);
 
         cfg_if::cfg_if! {
-            if #[cfg(any(target_board = "nucleo-h743zi2", target_board = "nucleo-h753zi"))] {
+            if #[cfg(any(target_board = "nucleo-h743zi2", target_board = "nucleo-h753zi", target_board = "nucleo-h755ziq"))] {
                 // Nucleo boards: LEDs are on PB0, PB14 and PE1.
                 const LEDS: &[(drv_stm32xx_sys_api::PinSet, bool)] = &[
                     (drv_stm32xx_sys_api::Port::B.pin(0), false),
@@ -518,6 +518,7 @@ fn led_info(led: Led) -> (drv_stm32xx_sys_api::PinSet, bool) {
             target_board = "gimletlet-2",
             target_board = "nucleo-h753zi",
             target_board = "nucleo-h743zi2",
+            target_board = "nucleo-h755ziq",
             target_board = "gemini-bu-1",
             target_board = "gimletlet-1",
             target_board = "gimletlet-2",
@@ -529,7 +530,8 @@ fn led_info(led: Led) -> (drv_stm32xx_sys_api::PinSet, bool) {
             target_board = "gimletlet-1",
             target_board = "gimletlet-2",
             target_board = "nucleo-h753zi",
-            target_board = "nucleo-h743zi2"
+            target_board = "nucleo-h743zi2",
+            target_board = "nucleo-h755ziq",
         ))]
         Led::Two => LEDS[2],
         #[cfg(any(

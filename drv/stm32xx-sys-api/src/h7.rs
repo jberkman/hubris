@@ -85,9 +85,9 @@ pub enum Peripheral {
     Sdmmc2 = periph(Group::Ahb2, 9),
 
     Rng = periph(Group::Ahb2, 6),
-    #[cfg(feature = "h753")]
+    #[cfg(any(feature = "h753", feature = "h747cm7"))]
     Hash = periph(Group::Ahb2, 5),
-    #[cfg(feature = "h753")]
+    #[cfg(any(feature = "h753", feature = "h747cm7"))]
     Crypt = periph(Group::Ahb2, 4),
 
     Dcmi = periph(Group::Ahb2, 0),
@@ -97,7 +97,7 @@ pub enum Peripheral {
 
     Hsem = periph(Group::Ahb4, 25), // 43/47: differs from B3
 
-    #[cfg(feature = "h743")]
+    #[cfg(any(feature = "h743", feature="h747cm7"))]
     Bdma = periph(Group::Ahb4, 21),
 
     GpioK = periph(Group::Ahb4, 10),
@@ -150,7 +150,7 @@ pub enum Peripheral {
 
     Hrtim = periph(Group::Apb2, 29), // 43/47 only
 
-    #[cfg(feature = "h743")]
+    #[cfg(any(feature = "h743", feature="h747cm7"))]
     Dfsdm1 = periph(Group::Apb2, 28), // 43/47 differ from B3
 
     Sai3 = periph(Group::Apb2, 24), // 43/47 only

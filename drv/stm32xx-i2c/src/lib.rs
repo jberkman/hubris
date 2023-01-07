@@ -10,6 +10,9 @@
 #[cfg(feature = "h743")]
 use stm32h7::stm32h743 as device;
 
+#[cfg(feature = "h747cm7")]
+use stm32h7::stm32h747cm7 as device;
+
 #[cfg(feature = "h753")]
 use stm32h7::stm32h753 as device;
 
@@ -21,6 +24,7 @@ use stm32g0::stm32g030 as device;
 
 #[cfg(any(
     feature = "h743",
+    feature = "h747cm7",
     feature = "h753",
     feature = "g031",
     feature = "g030"
@@ -29,6 +33,7 @@ pub type RegisterBlock = device::i2c1::RegisterBlock;
 
 #[cfg(any(
     feature = "h743",
+    feature = "h747cm7",
     feature = "h753",
     feature = "g031",
     feature = "g030"
@@ -274,7 +279,7 @@ impl I2cController<'_> {
         // hybrid of "CPU model" and "board name" sensing. Should move to
         // configuration!
         cfg_if::cfg_if! {
-            if #[cfg(any(feature = "h743", feature = "h753"))] {
+            if #[cfg(any(feature = "h743", feature = "h747cm7", feature = "h753"))] {
                 cfg_if::cfg_if! {
                     // Due to AMD Milan erratum 1394, the processor needs an
                     // abnormally long data setup time from an I2C target
@@ -372,7 +377,7 @@ impl I2cController<'_> {
             // (196). Note that these numbers make assumptions about the
             // system's clocking and clock tree configuration; TODO.
             //
-            if #[cfg(any(feature = "h743", feature = "h753"))] {
+            if #[cfg(any(feature = "h743", feature = "h747cm7", feature = "h753"))] {
                 i2c.timeoutr.write(|w| { w
                     .timouten().set_bit()           // Enable SCL timeout
                     .timeouta().bits(1220)          // Timeout value

@@ -23,7 +23,7 @@
 #[cfg_attr(target_board = "gemini-bu-1", path = "bsp/gemini_bu_1.rs")]
 #[cfg_attr(target_board = "gimletlet-2", path = "bsp/gimletlet_2.rs")]
 #[cfg_attr(
-    any(target_board = "nucleo-h743zi2", target_board = "nucleo-h753zi"),
+    any(target_board = "nucleo-h743zi2", target_board = "nucleo-h753zi", target_board = "nucleo-h755ziq"),
     path = "bsp/nucleo_h7x.rs"
 )]
 mod bsp;
@@ -40,6 +40,9 @@ use zerocopy::{AsBytes, FromBytes};
 
 #[cfg(feature = "h743")]
 use stm32h7::stm32h743 as device;
+
+#[cfg(feature = "h747cm7")]
+use stm32h7::stm32h747cm7 as device;
 
 #[cfg(feature = "h753")]
 use stm32h7::stm32h753 as device;
